@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"embed"
 	"io"
+	"time"
 	"log"
 	"net/http"
 	"os"
@@ -91,6 +92,7 @@ func main() {
 	srv := &http.Server{
 		Addr:    ":" + port,
 		Handler: router,
+		ReadTimeout: 30 * time.Second,
 	}
 
 	log.Printf("Serving on port: %s\n", port)
